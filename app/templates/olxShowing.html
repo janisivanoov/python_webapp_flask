@@ -1,0 +1,123 @@
+<html> 
+    <body> 
+        <script type="text/javascript">
+            import User from 'app/models'; //???
+        
+            let uRole = User.role;
+            let i = 0;
+            let u = 0;
+            var arr = [];
+            let authUrl = 'https://www.olx.ua/oauth/authorize';
+            let tokenUrl = 'https://www.olx.ua/api/open/oauth/token';
+
+            let xhr = new XMLHttpRequest();
+            xhr.open("POST", authUrl);
+            xhr.send(tokenUrl);
+
+            var getJSON = function(url, callback) {
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', url, true);
+                xhr.responseType = 'json';
+                xhr.onload = function() {
+                var status = xhr.status;
+                if (status === 200) {
+                    callback(null, xhr.response);
+                } else {
+                    callback(status, xhr.response);
+                }
+                };
+                xhr.send();
+            };
+
+            function fArray(){
+                for(i;i < 100; i++){
+                        let r = Math.random() * i;
+                        var object = 'https://www.olx.ua/api/partner/adverts/' + r;
+                        function httpGet(object)
+                        {
+                            var jsonHttp = new XMLHttpRequest();
+                            jsonHttp.open( "GET", object, false ); // false for synchronous request
+                            jsonHttp.send( null );
+                            var objj1 = jsonHttp.responseText;
+                        }
+                    arr.push(objj1++);
+                }
+            }
+
+            function sArray(){
+                for(i;i < 200; i++){
+                    let r = Math.random() * i;
+                        var object = 'https://www.olx.ua/api/partner/adverts/' + r;
+                        function httpGet(object)
+                        {
+                            var jsonHttp = new XMLHttpRequest();
+                            jsonHttp.open( "GET", object, false ); // false for synchronous request
+                            jsonHttp.send( null );
+                            var objj1 = jsonHttp.responseText;
+                        }
+                    arr.push(objj1++);
+                }
+            }
+
+            function tArray(){
+                for(i;i < 300; i++){
+                    let r = Math.random() * i;
+                        var object = 'https://www.olx.ua/api/partner/adverts/' + r;
+                        function httpGet(object)
+                        {
+                            var jsonHttp = new XMLHttpRequest();
+                            jsonHttp.open( "GET", object, false ); // false for synchronous request
+                            jsonHttp.send( null );
+                            var objj1 = jsonHttp.responseText;
+                        }
+                    arr.push(objj1++);
+                }
+            }
+
+            function ArrThen(){
+                for(u;u < arr.length(); u++){
+                    document.write(getJSON(arr[u]) + '<br>')
+                }
+            }
+
+            function deleteData(item, url) {
+                return fetch(url + '/' + item, {
+                    method: 'delete'
+                })
+                .then(response => response.json());
+            }
+
+            function getLinks(uRole)
+            {
+                if(uRole == 0){
+                    fArray().then(
+                        fArrThen().then(
+                            (message) => {
+                                return document.write(deleteData(message,arr[u]));
+                            }
+                        )
+                    )
+                }
+                if(uRole == 1){
+                    sArray().then(
+                        fArrThen().then(
+                            (message) => {
+                                return document.write(deleteData(message,arr[u]));
+                            }
+                        )
+                    )
+                }
+                if(uRole == 2){
+                    tArray().then(
+                        fArrThen().then(
+                            (message) => {
+                                return document.write(deleteData(message,arr[u]));
+                            }
+                        )
+                    )
+                    
+                }
+            }
+        </script>
+    </body> 
+</html> 
